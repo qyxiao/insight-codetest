@@ -177,7 +177,7 @@ public class process_log {
 			}else{
 				int gap = strConvertTime(parts, basisDay,  basisHour,  basisMinute,  basisSecond);
 				System.out.println(gap); //// test
-				if(gap - intervalList.getFirst().getBasisGap() > 3600){
+				while(intervalList.size()>0 && gap - intervalList.getFirst().getBasisGap() > 3600){
 					//TODO
 					if(count<num){
 						strHeap[count]=intervalList.getFirst().getText();
@@ -195,10 +195,6 @@ public class process_log {
 					}
 					frequenSum -= intervalList.getFirst().getFrequency();
 					intervalList.removeFirst();
-					while(intervalList.size()>0 && gap - intervalList.getFirst().getBasisGap() > 360){
-						frequenSum -= intervalList.getFirst().getFrequency();
-						intervalList.removeFirst();
-					}
 				}
 				intervalList.add(new TimeRecord(parts,gap,1));
 				frequenSum++;
